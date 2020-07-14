@@ -12,7 +12,7 @@ Explanation:
 
 Given n = 3, there are a total of 5 unique BST's:
 
-![avatar][base64str]
+![avatar][UniqueBinarySearchTrees.png]
 
 ## 96. 不同的二叉搜索树
 
