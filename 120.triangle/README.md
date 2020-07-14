@@ -1,14 +1,10 @@
-### 120. Triangle
+## 120. Triangle
 This is for implement code for some question at LeetCode.Given a triangle, find the minimum path sum from top to bottom. Each step you may move to adjacent numbers on the row below.
 
 For example, given the following triangle
 
-[
-     [2],
-    [3,4],
-   [6,5,7],
-  [4,1,8,3]
-]
+![avatar][base64str]
+
 The minimum path sum from top to bottom is 11 (i.e., 2 + 3 + 5 + 1 = 11).
 
 Note:
@@ -16,7 +12,7 @@ Note:
 Bonus point if you are able to do this using only O(n) extra space, where n is the total number of rows in the triangle.
 
 
-### 120. 三角形最小路径和
+## 120. 三角形最小路径和
 给定一个三角形，找出自顶向下的最小路径和。每一步只能移动到下一行中相邻的结点上。
 
 相邻的结点 在这里指的是 下标 与 上一层结点下标 相同或者等于 上一层结点下标 + 1 的两个结点。
@@ -25,12 +21,8 @@ Bonus point if you are able to do this using only O(n) extra space, where n is t
 
 例如，给定三角形：
 
-[
-     [2],
-    [3,4],
-   [6,5,7],
-  [4,1,8,3]
-]
+![avatar][base64str]
+
 自顶向下的最小路径和为 11（即，2 + 3 + 5 + 1 = 11）。
 
  
@@ -38,3 +30,6 @@ Bonus point if you are able to do this using only O(n) extra space, where n is t
 说明：
 
 如果你可以只使用 O(n) 的额外空间（n 为三角形的总行数）来解决这个问题，那么你的算法会很加分。
+
+
+[base64str]:data:image/png;base64,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
