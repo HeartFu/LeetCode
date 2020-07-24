@@ -1,28 +1,23 @@
 class Solution:
-    def searchInsert(self, nums, target) -> int:
-        length = len(nums)
+    def minArray(self, numbers) -> int:
+        if len(numbers) == 1:
+            return numbers[0]
+        # 确定左边数组大还是右边数组大
+        if numbers[0] < numbers[len(numbers) - 1]:
+            return numbers[0]
+        
+        # 二分查找
         left = 0
-        right = length - 1
-        while True:
-            if left > right:
-                return left
-            # if left <= right:
-            #     if nums[left] <= target:
-            #         return left
-            #     else:
-            #         return left + 1
-            middle = int((left + right) / 2)
-            # if middle >= len(nums) - 1:
-            #     return len(nums)
-            # if middle < 0:
-            #     return 0
-            if nums[middle] == target:
-                return middle
-            elif nums[middle] < target:
-                left = middle + 1
-            else:
-                right = middle - 1
-        return 0
+        right = len(numbers) - 1
+        min_value = numbers[right]
+        while left < right:
+            mid = int((left + right) / 2)
+            if numbers[mid] >= min_value:
+                left = mid + 1
+            elif numbers[mid] < min_value:
+                right = mid - 1
+
+        return numbers[left]
 
 solution = Solution()
-print(solution.searchInsert([1,3,5,6], 2))
+print(solution.minArray([1,1]))
