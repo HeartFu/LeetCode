@@ -72,4 +72,4 @@ Given the total number of courses and a list of prerequisite pairs, is it possib
 
 ## 解题思路
 
-![Solution]()
+![Solution](https://github.com/HeartFu/LeetCode/blob/master/207.Course%20Schedule/solution.png)
