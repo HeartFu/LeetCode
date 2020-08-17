@@ -36,3 +36,4 @@ class Solution:
 solution = Solution()
 print(solution.longestPalindrome("cbbd"))
 
+

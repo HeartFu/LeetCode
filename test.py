@@ -1,35 +1,34 @@
 class Solution:
-    def multiply(self, num1, num2) -> str:
-        
-        num1 = list(num1)
-        num2 = list(num2)
+    def threeSum(self, nums):
+        nums.sort()
         result = []
-        len1 = len(num1)
-        len2 = len(num2)
+        length = len(nums)
 
-        for i in range(len1):
-            curPos1 = int(num1[len1 - 1 - i])
-            for j in range(len2):
-                curPos2 = int(num2[len2 - 1 - j])
-                curResult = curPos1 * curPos2
-                if i + j >= len(result):
-                    result.append(curResult)
-                else:
-                    result[i + j] = result[i + j] + curResult
+        for i in range(length):
+            if i > 0 and nums[i] == nums[i - 1]:
+                continue
+            
+            maxIndex = length - 1
+            target = -nums[i]
 
-                if result[i + j] >= 10:
-                    upper = int(result[i + j] / 10)
-                    remainder = result[i + j] % 10
-                    result[i + j] = remainder
-                    if i + j + 1 >= len(result):
-                        result.append(upper)
+            for j in range(i + 1, length):
+                if j > i + 1 and nums[j] == nums[j - 1]:
+                    continue
+                
+                while maxIndex > j:
+                    objectTar = nums[j] + nums[maxIndex]
+                    if target == objectTar:
+                        result.append([nums[i], nums[j], nums[maxIndex]])
+                        break
+                    elif target > objectTar:
+                        break
                     else:
-                        result[i + j + 1] = result[i + j + 1] + upper
-
-        # 反转数组
-        resultStr = [str(x) for x in result]
-        resultRev = list(reversed(resultStr))
-        return "".join(resultRev)
+                        maxIndex -= 1
+                
+                if j == maxIndex:
+                    break
+        
+        return result
 
 solution = Solution()
-print(solution.multiply("123","456"))
+print(solution.threeSum([-1,0,1,2,-1,-4]))
