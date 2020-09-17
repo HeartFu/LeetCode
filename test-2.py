@@ -1,20 +1,44 @@
 class Solution:
-    def combine(self, n, k):
-        if n < 1 or n < k:
-            return []
-        if k == 0:
-            return [[]]
-        if n == k:
-           return [[i for i in range(1, n+1)]]
-        
-        res1 = self.combine(n - 1, k - 1)
-        res2 = self.combine(n - 1, k)
-        print(n, k, res1, res2)
-        if res1:
-            for i in res1:
-                i.append(n)
+    def solveNQueens(self, n):
+        status_matrix = [[0]*n for i in range(n)]
+        row = 0
+        final_result = []
+        self.backTracking(n, status_matrix, row, final_result)
+        return final_result
 
-        return res1 + res2
+    def backTracking(self, n, status_matrix, row, final_result):
+        if row == n:
+            # if status_matrix not in final_result:
+            queens = []
+            for i in range(n):
+                curstr = ''
+                for j in range(n):
+                    if status_matrix[i][j] == 1:
+                        curstr += 'Q'
+                    else:
+                        curstr += '.'
+                queens.append(curstr)
+            final_result.append(queens)
+            return
+        
+        for j in range(n):
+            if (row - 1 >= 0 and j - 1 >= 0 and status_matrix[row - 1][j - 1] == 1) \
+                or (row -1 >= 0 and j + 1 < n and status_matrix[row - 1][j + 1] == 1) \
+                or (row +1 < n and j - 1 >= 0 and status_matrix[row + 1][j - 1] == 1) \
+                or (row +1 < n and j + 1 < n and status_matrix[row + 1][j + 1] == 1):
+                continue
+            
+            flag = True # 标识列是否存在Q
+            for i in range(n):
+                if status_matrix[i][j] == 1:
+                    flag = False
+
+            if flag == False:
+                continue
+            
+            status_matrix[row][j] = 1
+            self.backTracking(n, status_matrix, row + 1, final_result)
+            status_matrix[row][j] = 0
 
 solution = Solution()
-print(solution.combine(4,2))
+print(solution.solveNQueens(4))
